@@ -4,11 +4,17 @@ public class Main {
     public static void main(String[] args) {
 
         Counter c = new Counter();
-        c.increment();
+        Thread t1 = new Thread(new Runnable() {
 
-        System.out.println(c.count);
+            public void run() {
+                for (int i=1; i<= 1000;i++){
+                    c.increment();
+                }
+            }
+        });
 
-
+        t1.start();
+        System.out.println("Count :" + c.count);
 
     }
 }
